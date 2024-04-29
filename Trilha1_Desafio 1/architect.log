@@ -1,0 +1,482 @@
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+507  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+586  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+587  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+646  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+14988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE TB_COLABORADORES (
+                codigo_colaborador INTEGER NOT NULL,
+                data_admissao DATE NOT NULL,
+                pagamento_mensal DECIMAL(5,2) NOT NULL,
+                salario DECIMAL(5,2) NOT NULL,
+                nome_colaborador VARCHAR(50) NOT NULL,
+                Setor VARCHAR(20) NOT NULL,
+                CONSTRAINT TB_COLABORADORES_pk PRIMARY KEY (codigo_colaborador)
+)
+14988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_CLIENTE (
+                codigo_cliente INTEGER NOT NULL,
+                nome_fantasia VARCHAR(100) NOT NULL,
+                cnpj VARCHAR(18) NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                CONSTRAINT TB_CLIENTE_PK PRIMARY KEY (codigo_cliente)
+)
+14988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_PROJETO (
+                codigo_projeto INTEGER NOT NULL,
+                codigo_cliente INTEGER NOT NULL,
+                horas_projeto TIME NOT NULL,
+                ativo BOOLEAN NOT NULL,
+                concluido BOOLEAN NOT NULL,
+                Faturamento_mensal DECIMAL(10,2) NOT NULL,
+                CONSTRAINT TB_PROJETO_PK PRIMARY KEY (codigo_projeto)
+)
+14988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_EQUIPE_PROJETO (
+                codigo_equipe INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                CONSTRAINT TB_EQUIPE_PROJETO_PK PRIMARY KEY (codigo_equipe, codigo_colaborador, codigo_projeto)
+)
+14988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_APONTAMENTO_HORAS (
+                codigo_apontamento INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                horas TIME NOT NULL,
+                CONSTRAINT TB_APONTAMENTO_HORAS_PK PRIMARY KEY (codigo_apontamento, codigo_colaborador, codigo_projeto)
+)
+14988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_COLABORADORES_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+14995 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_COLABORADORES_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+14997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_PROJETO ADD CONSTRAINT TB_CLIENTE_TB_PROJETO_fk
+FOREIGN KEY (codigo_cliente)
+REFERENCES TB_CLIENTE (codigo_cliente)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+14998 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_PROJETO_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+14998 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_PROJETO_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+15000 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :10
+22987 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+571711 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE TB_COLABORADORES (
+                codigo_colaborador INTEGER NOT NULL,
+                data_admissao DATE NOT NULL,
+                pagamento_mensal DECIMAL(5,2) NOT NULL,
+                salario DECIMAL(5,2) NOT NULL,
+                nome_colaborador VARCHAR(50) NOT NULL,
+                Setor VARCHAR(20) NOT NULL,
+                CONSTRAINT TB_COLABORADORES_pk PRIMARY KEY (codigo_colaborador)
+)
+571711 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_CLIENTE (
+                codigo_cliente INTEGER NOT NULL,
+                nome_fantasia VARCHAR(100) NOT NULL,
+                cnpj VARCHAR(18) NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                Faturamento_mensal DECIMAL(10,2) NOT NULL,
+                CONSTRAINT TB_CLIENTE_PK PRIMARY KEY (codigo_cliente)
+)
+571711 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_PROJETO (
+                codigo_projeto INTEGER NOT NULL,
+                codigo_cliente INTEGER NOT NULL,
+                horas_projeto TIME NOT NULL,
+                ativo BOOLEAN NOT NULL,
+                concluido BOOLEAN NOT NULL,
+                Faturamento_mensal DECIMAL(10,2) NOT NULL,
+                CONSTRAINT TB_PROJETO_PK PRIMARY KEY (codigo_projeto)
+)
+571711 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_EQUIPE_PROJETO (
+                codigo_equipe INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                CONSTRAINT TB_EQUIPE_PROJETO_PK PRIMARY KEY (codigo_equipe, codigo_colaborador, codigo_projeto)
+)
+571711 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_APONTAMENTO_HORAS (
+                codigo_apontamento INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                horas TIME NOT NULL,
+                CONSTRAINT TB_APONTAMENTO_HORAS_PK PRIMARY KEY (codigo_apontamento, codigo_colaborador, codigo_projeto)
+)
+571711 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_COLABORADORES_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+571718 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_COLABORADORES_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+571719 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_PROJETO ADD CONSTRAINT TB_CLIENTE_TB_PROJETO_fk
+FOREIGN KEY (codigo_cliente)
+REFERENCES TB_CLIENTE (codigo_cliente)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+571719 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_PROJETO_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+571719 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_PROJETO_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+571724 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :10
+703897 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE TB_COLABORADORES (
+                codigo_colaborador INTEGER NOT NULL,
+                data_admissao DATE NOT NULL,
+                pagamento_mensal DECIMAL(5,2) NOT NULL,
+                salario DECIMAL(5,2) NOT NULL,
+                nome_colaborador VARCHAR(50) NOT NULL,
+                Setor VARCHAR(20) NOT NULL,
+                CONSTRAINT TB_COLABORADORES_pk PRIMARY KEY (codigo_colaborador)
+)
+703899 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_CLIENTE (
+                codigo_cliente INTEGER NOT NULL,
+                nome_fantasia VARCHAR(100) NOT NULL,
+                cnpj VARCHAR(18) NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                Faturamento_mensal DECIMAL(10,2) NOT NULL,
+                CONSTRAINT TB_CLIENTE_PK PRIMARY KEY (codigo_cliente)
+)
+703900 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_PROJETO (
+                codigo_projeto INTEGER NOT NULL,
+                codigo_cliente INTEGER NOT NULL,
+                horas_projeto TIME NOT NULL,
+                ativo BOOLEAN NOT NULL,
+                concluido BOOLEAN NOT NULL,
+                Faturamento_mensal DECIMAL(10,2) NOT NULL,
+                CONSTRAINT TB_PROJETO_PK PRIMARY KEY (codigo_projeto)
+)
+703900 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_EQUIPE_PROJETO (
+                codigo_equipe INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                CONSTRAINT TB_EQUIPE_PROJETO_PK PRIMARY KEY (codigo_equipe, codigo_colaborador, codigo_projeto)
+)
+703902 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_APONTAMENTO_HORAS (
+                codigo_apontamento INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                horas TIME NOT NULL,
+                CONSTRAINT TB_APONTAMENTO_HORAS_PK PRIMARY KEY (codigo_apontamento, codigo_colaborador, codigo_projeto)
+)
+703904 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_COLABORADORES_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+703905 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_COLABORADORES_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+703905 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_PROJETO ADD CONSTRAINT TB_CLIENTE_TB_PROJETO_fk
+FOREIGN KEY (codigo_cliente)
+REFERENCES TB_CLIENTE (codigo_cliente)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+703905 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_PROJETO_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+703910 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_PROJETO_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+703911 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :10
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE TB_COLABORADORES (
+                codigo_colaborador INTEGER NOT NULL,
+                data_admissao DATE NOT NULL,
+                pagamento_mensal DECIMAL(5,2) NOT NULL,
+                salario DECIMAL(5,2) NOT NULL,
+                nome_colaborador VARCHAR(50) NOT NULL,
+                Setor VARCHAR(20) NOT NULL,
+                CONSTRAINT TB_COLABORADORES_pk PRIMARY KEY (codigo_colaborador)
+)
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_CLIENTE (
+                codigo_cliente INTEGER NOT NULL,
+                nome_fantasia VARCHAR(100) NOT NULL,
+                cnpj VARCHAR(18) NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                Faturamento_mensal DECIMAL(10,2) NOT NULL,
+                CONSTRAINT TB_CLIENTE_PK PRIMARY KEY (codigo_cliente)
+)
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_PROJETO (
+                codigo_projeto INTEGER NOT NULL,
+                codigo_cliente INTEGER NOT NULL,
+                horas_projeto TIME NOT NULL,
+                ativo BOOLEAN NOT NULL,
+                concluido BOOLEAN NOT NULL,
+                Faturamento_mensal DECIMAL(10,2) NOT NULL,
+                CONSTRAINT TB_PROJETO_PK PRIMARY KEY (codigo_projeto)
+)
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_EQUIPE_PROJETO (
+                codigo_equipe INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                CONSTRAINT TB_EQUIPE_PROJETO_PK PRIMARY KEY (codigo_equipe, codigo_colaborador, codigo_projeto)
+)
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_APONTAMENTO_HORAS (
+                codigo_apontamento INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                horas TIME NOT NULL,
+                CONSTRAINT TB_APONTAMENTO_HORAS_PK PRIMARY KEY (codigo_apontamento, codigo_colaborador, codigo_projeto)
+)
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_COLABORADORES_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_COLABORADORES_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_PROJETO ADD CONSTRAINT TB_CLIENTE_TB_PROJETO_fk
+FOREIGN KEY (codigo_cliente)
+REFERENCES TB_CLIENTE (codigo_cliente)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_PROJETO_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1620412 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_PROJETO_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1620428 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :10
+1639330 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE TB_COLABORADORES (
+                codigo_colaborador INTEGER NOT NULL,
+                data_admissao DATE NOT NULL,
+                pagamento_mensal DECIMAL(5,2) NOT NULL,
+                salario DECIMAL(5,2) NOT NULL,
+                nome_colaborador VARCHAR(50) NOT NULL,
+                Setor VARCHAR(20) NOT NULL,
+                CONSTRAINT TB_COLABORADORES_pk PRIMARY KEY (codigo_colaborador)
+)
+1639330 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_CLIENTE (
+                codigo_cliente INTEGER NOT NULL,
+                nome_fantasia VARCHAR(100) NOT NULL,
+                cnpj VARCHAR(18) NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                Faturamento_mensal DECIMAL(10,2) NOT NULL,
+                CONSTRAINT TB_CLIENTE_PK PRIMARY KEY (codigo_cliente)
+)
+1639330 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_PROJETO (
+                codigo_projeto INTEGER NOT NULL,
+                codigo_cliente INTEGER NOT NULL,
+                horas_projeto TIME NOT NULL,
+                ativo BOOLEAN NOT NULL,
+                concluido BOOLEAN NOT NULL,
+                Faturamento_mensal DECIMAL(10,2) NOT NULL,
+                CONSTRAINT TB_PROJETO_PK PRIMARY KEY (codigo_projeto)
+)
+1639339 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_EQUIPE_PROJETO (
+                codigo_equipe INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                CONSTRAINT TB_EQUIPE_PROJETO_PK PRIMARY KEY (codigo_equipe, codigo_colaborador, codigo_projeto)
+)
+1639339 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE TB_APONTAMENTO_HORAS (
+                codigo_apontamento INTEGER NOT NULL,
+                codigo_colaborador INTEGER NOT NULL,
+                codigo_projeto INTEGER NOT NULL,
+                horas TIME NOT NULL,
+                CONSTRAINT TB_APONTAMENTO_HORAS_PK PRIMARY KEY (codigo_apontamento, codigo_colaborador, codigo_projeto)
+)
+1639339 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_COLABORADORES_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1639339 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_COLABORADORES_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_colaborador)
+REFERENCES TB_COLABORADORES (codigo_colaborador)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1639339 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_PROJETO ADD CONSTRAINT TB_CLIENTE_TB_PROJETO_fk
+FOREIGN KEY (codigo_cliente)
+REFERENCES TB_CLIENTE (codigo_cliente)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1639339 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_APONTAMENTO_HORAS ADD CONSTRAINT TB_PROJETO_TB_APONTAMENTO_HORAS_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1639339 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE TB_EQUIPE_PROJETO ADD CONSTRAINT TB_PROJETO_TB_EQUIPE_PROJETO_fk
+FOREIGN KEY (codigo_projeto)
+REFERENCES TB_PROJETO (codigo_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1639339 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :10
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+464  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+533  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+533  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+602  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22911 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+30874 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@6127a8]
